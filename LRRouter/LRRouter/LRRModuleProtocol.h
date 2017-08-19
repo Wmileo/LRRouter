@@ -10,8 +10,18 @@
 
 @protocol LRRModuleProtocol <NSObject>
 
-+(instancetype)lrrModuleInstance;
-
+#pragma mark - 用于注册
 +(NSString *)lrrPath;
++(NSArray<NSString *> *)lrrClassMethods;
++(NSArray<NSString *> *)lrrInstanceMethods;
+
+@optional
+
+#pragma mark - class
++(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params;
+
+#pragma mark - instance
++(instancetype)lrrModuleInstance;
+-(instancetype)lrrHandleInstanceMothod:(NSString *)method params:(NSDictionary *)params;
 
 @end
