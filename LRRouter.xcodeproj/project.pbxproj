@@ -15,6 +15,8 @@
 		B33690241F45700A00665290 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B33690221F45700A00665290 /* LaunchScreen.storyboard */; };
 		B336902F1F45700B00665290 /* LRRouterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B336902E1F45700B00665290 /* LRRouterTests.m */; };
 		B336903A1F45700B00665290 /* LRRouterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B33690391F45700B00665290 /* LRRouterUITests.m */; };
+		B336904A1F45734200665290 /* LRRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B33690491F45734200665290 /* LRRouter.m */; };
+		B3C88B371F4691AB008B2E8B /* LRRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,11 @@
 		B33690351F45700B00665290 /* LRRouterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LRRouterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B33690391F45700B00665290 /* LRRouterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LRRouterUITests.m; sourceTree = "<group>"; };
 		B336903B1F45700B00665290 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B33690481F45734200665290 /* LRRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRRouter.h; sourceTree = "<group>"; };
+		B33690491F45734200665290 /* LRRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRRouter.m; sourceTree = "<group>"; };
+		B3C88B351F4691AB008B2E8B /* LRRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRRAnnotation.h; sourceTree = "<group>"; };
+		B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRRAnnotation.m; sourceTree = "<group>"; };
+		B3C88B441F46C3B5008B2E8B /* LRRModuleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRRModuleProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +112,7 @@
 				B33690181F45700900665290 /* AppDelegate.m */,
 				B336901A1F45700900665290 /* ViewController.h */,
 				B336901B1F45700900665290 /* ViewController.m */,
+				B33690471F4572D300665290 /* LRRouter */,
 				B336901D1F45700900665290 /* Main.storyboard */,
 				B33690201F45700A00665290 /* Assets.xcassets */,
 				B33690221F45700A00665290 /* LaunchScreen.storyboard */,
@@ -138,6 +146,18 @@
 				B336903B1F45700B00665290 /* Info.plist */,
 			);
 			path = LRRouterUITests;
+			sourceTree = "<group>";
+		};
+		B33690471F4572D300665290 /* LRRouter */ = {
+			isa = PBXGroup;
+			children = (
+				B33690481F45734200665290 /* LRRouter.h */,
+				B33690491F45734200665290 /* LRRouter.m */,
+				B3C88B351F4691AB008B2E8B /* LRRAnnotation.h */,
+				B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */,
+				B3C88B441F46C3B5008B2E8B /* LRRModuleProtocol.h */,
+			);
+			path = LRRouter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,8 +296,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B336904A1F45734200665290 /* LRRouter.m in Sources */,
 				B336901C1F45700900665290 /* ViewController.m in Sources */,
 				B33690191F45700900665290 /* AppDelegate.m in Sources */,
+				B3C88B371F4691AB008B2E8B /* LRRAnnotation.m in Sources */,
 				B33690161F45700900665290 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +540,7 @@
 				B33690401F45700B00665290 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33690411F45700B00665290 /* Build configuration list for PBXNativeTarget "LRRouterTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +549,7 @@
 				B33690431F45700B00665290 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B33690441F45700B00665290 /* Build configuration list for PBXNativeTarget "LRRouterUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +558,7 @@
 				B33690461F45700B00665290 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

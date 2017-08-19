@@ -7,15 +7,27 @@
 //
 
 #import "ViewController.h"
+#import "LRRouter.h"
+
+LRRModule(ViewController)
 
 @interface ViewController ()
+
+-(void)cool;
 
 @end
 
 @implementation ViewController
 
+-(void)cool{
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%@",[LRRAnnotation annotationModules]);
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
