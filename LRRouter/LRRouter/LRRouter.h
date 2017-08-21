@@ -9,9 +9,30 @@
 #import <Foundation/Foundation.h>
 #import "LRRAnnotation.h"
 #import "LRRModuleProtocol.h"
+#import "LRRModuleMacro.h"
 
 @interface LRRouter : NSObject
+
+//+(instancetype)lrrHandleURL:(NSString *)url;
+//+(instancetype)lrrHandleURL:(NSString *)url params:(NSDictionary *)params;
+
++(instancetype)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params;
 
 
 
 @end
+
+
+
+
+@interface LRRouter (debug)
+
++(void)debugMode;
+
+//在调用的时候  建议在load方法里面加上这个检测方法  请放心 只有开启debug模式才会起作用
++(void)lrrCheckClassMethod:(NSString *)method path:(NSString *)path;
+
+@end
+
+
+

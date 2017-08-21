@@ -17,6 +17,8 @@
 		B336903A1F45700B00665290 /* LRRouterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B33690391F45700B00665290 /* LRRouterUITests.m */; };
 		B336904A1F45734200665290 /* LRRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = B33690491F45734200665290 /* LRRouter.m */; };
 		B3C88B371F4691AB008B2E8B /* LRRAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */; };
+		B3C88B471F48298F008B2E8B /* TTT.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C88B461F48298F008B2E8B /* TTT.m */; };
+		B3C88B4E1F4ABEBF008B2E8B /* AAA.m in Sources */ = {isa = PBXBuildFile; fileRef = B3C88B4D1F4ABEBF008B2E8B /* AAA.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,11 @@
 		B3C88B351F4691AB008B2E8B /* LRRAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRRAnnotation.h; sourceTree = "<group>"; };
 		B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRRAnnotation.m; sourceTree = "<group>"; };
 		B3C88B441F46C3B5008B2E8B /* LRRModuleProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRRModuleProtocol.h; sourceTree = "<group>"; };
+		B3C88B451F48298F008B2E8B /* TTT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTT.h; sourceTree = "<group>"; };
+		B3C88B461F48298F008B2E8B /* TTT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTT.m; sourceTree = "<group>"; };
+		B3C88B4C1F4ABEBF008B2E8B /* AAA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAA.h; sourceTree = "<group>"; };
+		B3C88B4D1F4ABEBF008B2E8B /* AAA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAA.m; sourceTree = "<group>"; };
+		B3C88B4F1F4AC3EA008B2E8B /* LRRModuleMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LRRModuleMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +119,10 @@
 				B33690181F45700900665290 /* AppDelegate.m */,
 				B336901A1F45700900665290 /* ViewController.h */,
 				B336901B1F45700900665290 /* ViewController.m */,
+				B3C88B451F48298F008B2E8B /* TTT.h */,
+				B3C88B461F48298F008B2E8B /* TTT.m */,
+				B3C88B4C1F4ABEBF008B2E8B /* AAA.h */,
+				B3C88B4D1F4ABEBF008B2E8B /* AAA.m */,
 				B33690471F4572D300665290 /* LRRouter */,
 				B336901D1F45700900665290 /* Main.storyboard */,
 				B33690201F45700A00665290 /* Assets.xcassets */,
@@ -156,6 +167,7 @@
 				B3C88B351F4691AB008B2E8B /* LRRAnnotation.h */,
 				B3C88B361F4691AB008B2E8B /* LRRAnnotation.m */,
 				B3C88B441F46C3B5008B2E8B /* LRRModuleProtocol.h */,
+				B3C88B4F1F4AC3EA008B2E8B /* LRRModuleMacro.h */,
 			);
 			path = LRRouter;
 			sourceTree = "<group>";
@@ -296,9 +308,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3C88B471F48298F008B2E8B /* TTT.m in Sources */,
 				B336904A1F45734200665290 /* LRRouter.m in Sources */,
 				B336901C1F45700900665290 /* ViewController.m in Sources */,
 				B33690191F45700900665290 /* AppDelegate.m in Sources */,
+				B3C88B4E1F4ABEBF008B2E8B /* AAA.m in Sources */,
 				B3C88B371F4691AB008B2E8B /* LRRAnnotation.m in Sources */,
 				B33690161F45700900665290 /* main.m in Sources */,
 			);

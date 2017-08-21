@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "LRRouter.h"
 
-LRRModule(ViewController)
-
 @interface ViewController ()
 
 -(void)cool;
@@ -26,7 +24,7 @@ LRRModule(ViewController)
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@",[LRRAnnotation annotationModules]);
+    [LRRouter lrrHandleClassMethod:@"get" path:@"TTT/AAA" params:@{}];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

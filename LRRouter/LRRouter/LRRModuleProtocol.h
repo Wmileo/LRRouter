@@ -10,18 +10,21 @@
 
 @protocol LRRModuleProtocol <NSObject>
 
-#pragma mark - 用于注册
+#pragma mark - 用于注册 
+/*
+ * 用于生成url，如果是子模块用/分隔，比如B是A的子模块：A/B
+ */
 +(NSString *)lrrPath;
-+(NSArray<NSString *> *)lrrClassMethods;
-+(NSArray<NSString *> *)lrrInstanceMethods;
 
 @optional
 
 #pragma mark - class
++(NSArray<NSString *> *)lrrClassMethods;
 +(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params;
 
-#pragma mark - instance
-+(instancetype)lrrModuleInstance;
--(instancetype)lrrHandleInstanceMothod:(NSString *)method params:(NSDictionary *)params;
+//#pragma mark - instance
+//+(NSArray<NSString *> *)lrrInstanceMethods;
+//+(instancetype)lrrModuleInstance;
+//-(instancetype)lrrHandleInstanceMothod:(NSString *)method params:(NSDictionary *)params;
 
 @end
