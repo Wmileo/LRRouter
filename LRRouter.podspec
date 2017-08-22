@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LRRouter"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "LRRouter"
   s.description  = <<-DESC
 					 LRRouter 路由 用于分离组件
