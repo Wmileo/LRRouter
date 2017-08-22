@@ -19,6 +19,10 @@ LRRModule(AAA)
 
 @implementation AAA
 
++(void)load{
+    [LRRouter lrrCheckClassMethod:@"set" path:@"TTT"];
+}
+
 +(NSString *)lrrPath{
     return @"TTT/AAA";
 }
@@ -27,12 +31,22 @@ LRRModule(AAA)
     return @[@"get"];
 }
 
-+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
-    if ([method isEqualToString:@"get"]) {
-        NSLog(@"get");
-        [LRRouter lrrHandleClassMethod:@"set" path:@"TTaT" params:params];
-    }
-    return nil;
+//+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
+////    if ([method isEqualToString:@"get"]) {
+////        NSLog(@"get");
+////        [LRRouter lrrHandleClassMethod:@"set" path:@"TTT" params:params];
+////    }
+//    
+//#pragma clang diagnostic push
+//#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+//    [self performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method]) withObject:params];
+//#pragma clang diagnostic pop
+//    
+//    return nil;
+//}
+
++(void)get:(NSDictionary *)params{
+    [LRRouter lrrHandleClassMethod:@"set" path:@"TTT" params:params];
 }
 
 @end

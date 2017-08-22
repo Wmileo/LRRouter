@@ -25,11 +25,11 @@ LRRModule(TTT)
     return @[@"set"];
 }
 
-+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
-    if ([method isEqualToString:@"set"]) {
-        NSLog(@"set");
-    }
-    return nil;
-}
+//+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
+//    if ([method isEqualToString:@"set"]) {
+//        NSLog(@"%@",params);
+//    }
+//    return nil;
+//}
 
 @end

@@ -16,15 +16,11 @@
  */
 +(NSString *)lrrPath;
 
-@optional
-
 #pragma mark - class
 +(NSArray<NSString *> *)lrrClassMethods;
-+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params;
 
 //#pragma mark - instance
 //+(NSArray<NSString *> *)lrrInstanceMethods;
 //+(instancetype)lrrModuleInstance;
-//-(instancetype)lrrHandleInstanceMothod:(NSString *)method params:(NSDictionary *)params;
 
 @end

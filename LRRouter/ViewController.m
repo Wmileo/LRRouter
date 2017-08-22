@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LRRouter lrrHandleClassMethod:@"get" path:@"TTT/AAA" params:@{}];
+    [LRRouter lrrHandleClassMethod:@"get" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
     
     // Do any additional setup after loading the view, typically from a nib.
 }

@@ -46,15 +46,21 @@
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
     
-    return [module lrrHandleClassMethod:method params:params];
-}
+    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method])], @"未实现该方法");
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    return [module performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method]) withObject:params];
+#pragma clang diagnostic pop
 
+}
 
 #pragma mark -
 
 -(void)registerAnnotationModules{
     NSArray<NSString *> *annotationModules = [LRRAnnotation annotationModules];
     [annotationModules enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
         NSAssert(LRRIsValidString(obj), @"类名obj不能为空");
         NSAssert([NSClassFromString(obj) conformsToProtocol:@protocol(LRRModuleProtocol)], @"未实现LRRModuleProtocol协议");
         NSAssert([NSClassFromString(obj) respondsToSelector:@selector(lrrPath)], @"未实现lrrPath方法");
@@ -63,11 +69,18 @@
 
         NSString *path = [module lrrPath];
         NSMutableDictionary *modules = [self moduleWithPath:path];
+        
         modules[kLRRModuleClass] = obj;
         modules[kLRRModulePath] = path;
         if ([module respondsToSelector:@selector(lrrClassMethods)]) {
-            NSAssert([module respondsToSelector:@selector(lrrHandleClassMethod:params:)], @"未实现lrrHandleClassMethod:params:方法");
             NSArray *classMethods = [module lrrClassMethods];
+            
+#ifdef DEBUG
+            [classMethods enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",obj])], @"未实现注册方法");
+            }];
+#endif
+            
             modules[kLRRModuleClassMethods] = LRRSafeArray(classMethods);
         }else{
             modules[kLRRModuleClassMethods] = @[];
@@ -104,18 +117,15 @@
 
 @implementation LRRouter (debug)
 
-#pragma mark - debug
-BOOL isDebug;
-+(void)debugMode{
-    isDebug = YES;
-}
 +(void)lrrCheckClassMethod:(NSString *)method path:(NSString *)path{
-    if (isDebug) {
-        NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
-        NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
-        NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
-        NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
-    }
+    
+#ifdef DEBUG
+    NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
+    NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
+    NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
+    NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
+#endif
+    
 }
 
 

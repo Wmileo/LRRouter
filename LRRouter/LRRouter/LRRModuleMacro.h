@@ -10,10 +10,6 @@
 #define LRRModuleMacro_h
 
 
-
-
-
-
 // 数据有效性
 
 #define LRRIsValidString(str) (str && ![str isKindOfClass:[NSNull class]] && ![str isEqualToString:@"<null>"] && ![str isEqualToString:@""])
