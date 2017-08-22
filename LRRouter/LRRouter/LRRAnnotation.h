@@ -17,7 +17,9 @@
 
 //声明组件模块
 #define LRRModule(name) \
-char * k##name##_module LRRDATA(LRRModules) = ""#name"";
+char * k##name##_module LRRDATA(LRRModules) = ""#name""; \
+@interface name () <LRRModuleProtocol> \
+@end
 
 
 @interface LRRAnnotation : NSObject

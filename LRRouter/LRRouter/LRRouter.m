@@ -37,7 +37,6 @@
     return self;
 }
 
-
 #pragma mark - 
 
 +(instancetype)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params{
@@ -125,7 +124,6 @@
     NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
     NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
 #endif
-    
 }
 
 

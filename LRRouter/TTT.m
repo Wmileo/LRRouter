@@ -11,8 +11,8 @@
 
 LRRModule(TTT)
 
-@interface TTT () <LRRModuleProtocol>
-
+@interface TTT ()
+@property (nonatomic) NSArray *arr;
 @end
 
 @implementation TTT
@@ -25,6 +25,15 @@ LRRModule(TTT)
     return @[@"set"];
 }
 
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.arr = @[];
+    }
+    return self;
+}
 //+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
 //    if ([method isEqualToString:@"set"]) {
 //        NSLog(@"%@",params);

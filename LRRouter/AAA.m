@@ -11,12 +11,6 @@
 
 LRRModule(AAA)
 
-@interface AAA () <LRRModuleProtocol>
-
-
-
-@end
-
 @implementation AAA
 
 +(void)load{
