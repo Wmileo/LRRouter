@@ -16,7 +16,7 @@
 //+(instancetype)lrrHandleURL:(NSString *)url;
 //+(instancetype)lrrHandleURL:(NSString *)url params:(NSDictionary *)params;
 
-+(instancetype)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params;
++(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params;
 
 @end
 

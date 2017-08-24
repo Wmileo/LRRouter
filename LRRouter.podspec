@@ -1,4 +1,5 @@
 Pod::Spec.new do |s|
+
   s.name         = "LRRouter"
   s.version      = "0.0.2"
   s.summary      = "LRRouter"
@@ -15,4 +16,5 @@ Pod::Spec.new do |s|
   s.source_files = "LRRouter/LRRouter/*.{h,m}"
 
   s.requires_arc = true
+
 end

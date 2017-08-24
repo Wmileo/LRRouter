@@ -22,7 +22,7 @@ LRRModule(AAA)
 }
 
 +(NSArray<NSString *> *)lrrClassMethods{
-    return @[@"get"];
+    return @[@"get",@"aaa"];
 }
 
 //+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
@@ -41,6 +41,9 @@ LRRModule(AAA)
 
 +(void)get:(NSDictionary *)params{
     [LRRouter lrrHandleClassMethod:@"set" path:@"TTT" params:params];
+}
+
++(void)aaa:(NSDictionary *)params{
 }
 
 @end

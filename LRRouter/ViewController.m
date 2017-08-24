@@ -17,6 +17,10 @@
 
 @implementation ViewController
 
++(void)load{
+    
+}
+
 -(void)cool{
 
 }
@@ -24,8 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LRRouter lrrHandleClassMethod:@"get" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
-    
+    [LRRouter lrrHandleClassMethod:@"getgdr" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
+    [LRRouter lrrHandleClassMethod:@"aaa" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
+
     // Do any additional setup after loading the view, typically from a nib.
 }
 

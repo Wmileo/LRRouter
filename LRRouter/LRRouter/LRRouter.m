@@ -39,7 +39,7 @@
 
 #pragma mark - 
 
-+(instancetype)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params{
++(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params{
     [self lrrCheckClassMethod:method path:path];
     
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
