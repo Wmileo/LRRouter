@@ -14,7 +14,7 @@ LRRModule(AAA)
 @implementation AAA
 
 +(void)load{
-    [LRRouter lrrCheckClassMethod:@"set" path:@"TTT"];
+//    [LRRouter lrrCheckClassMethod:@"set" path:@"TTT"];
 }
 
 +(NSString *)lrrPath{
@@ -22,7 +22,7 @@ LRRModule(AAA)
 }
 
 +(NSArray<NSString *> *)lrrClassMethods{
-    return @[@"get",@"aaa"];
+    return @[@"get:"];
 }
 
 //+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
@@ -39,8 +39,8 @@ LRRModule(AAA)
 //    return nil;
 //}
 
-+(void)get:(NSDictionary *)params{
-    [LRRouter lrrHandleClassMethod:@"set" path:@"TTT" params:params];
++(void)get:(NSString *)params{
+    [LRRouter lrrHandleClassMethod:@"set:aa:" path:@"TTT" params:@[params,@"cc"]];
 }
 
 +(void)aaa:(NSDictionary *)params{
