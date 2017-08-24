@@ -22,7 +22,7 @@ LRRModule(TTT)
 }
 
 +(NSArray<NSString *> *)lrrClassMethods{
-    return @[@"set"];
+    return @[NSStringFromSelector(@selector(set:aa:))];
 }
 
 
@@ -34,11 +34,16 @@ LRRModule(TTT)
     }
     return self;
 }
+
 //+(instancetype)lrrHandleClassMethod:(NSString *)method params:(NSDictionary *)params{
 //    if ([method isEqualToString:@"set"]) {
 //        NSLog(@"%@",params);
 //    }
 //    return nil;
 //}
+
++(void)set:(NSInteger)aa aa:(NSString *)bb{
+    NSLog(@"set%zd%@",aa,bb);
+}
 
 @end

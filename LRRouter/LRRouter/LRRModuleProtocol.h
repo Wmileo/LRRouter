@@ -18,9 +18,11 @@
 
 #pragma mark - class
 /*
- * 用于注册可用类方法，仅支持无参数方法（call），或者带一个参数的方法(call:)
+ * 用于注册可用类方法 NSStringFromSelector(@selector()) 方法参数只支持id类型
  */
 +(NSArray<NSString *> *)lrrClassMethods;
+
+
 
 //#pragma mark - instance
 //+(NSArray<NSString *> *)lrrInstanceMethods;
