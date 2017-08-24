@@ -45,11 +45,11 @@
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
     
-    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method])], @"未实现该方法");
+    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
     
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    return [module performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method]) withObject:params];
+    return [module performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method]) withObject:params];
 #pragma clang diagnostic pop
 
 }
@@ -76,7 +76,7 @@
             
 #ifdef DEBUG
             [classMethods enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",obj])], @"未实现注册方法");
+                NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",obj])], @"未实现注册方法");
             }];
 #endif
             
