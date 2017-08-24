@@ -17,7 +17,12 @@
 +(NSString *)lrrPath;
 
 #pragma mark - class
+/*
+ * 用于注册可用类方法 NSStringFromSelector(@selector()) 方法参数只支持id类型
+ */
 +(NSArray<NSString *> *)lrrClassMethods;
+
+
 
 //#pragma mark - instance
 //+(NSArray<NSString *> *)lrrInstanceMethods;

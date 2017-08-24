@@ -39,20 +39,44 @@
 
 #pragma mark - 
 
-+(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSDictionary *)params{
++(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSArray *)params{
     [self lrrCheckClassMethod:method path:path];
     
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
     
-    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method])], @"未实现该方法");
+    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
     
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    return [module performSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",method]) withObject:params];
-#pragma clang diagnostic pop
+    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@",method]);
+    NSMethodSignature *signature = [module methodSignatureForSelector:selector];
+    NSAssert(signature, @"方法解析失败");
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+    invocation.target = module;
+    invocation.selector = selector;
+    
+    // 设置参数
+    NSInteger paramsCount = signature.numberOfArguments - 2; // 除self、_cmd以外的参数个数
+    paramsCount = MIN(paramsCount, params.count);
+    for (NSInteger i = 0; i < paramsCount; i++) {
+        id object = params[i];
+        if ([object isKindOfClass:[NSNull class]]) continue;
+        [invocation setArgument:&object atIndex:i + 2];
+    }
+    
+    // 调用方法
+    [invocation invoke];
+    
+    // 获取返回值
+    id returnValue = nil;
+    if (signature.methodReturnLength) { // 有返回值类型，才去获得返回值
+        [invocation getReturnValue:&returnValue];
+    }
+    
+    return returnValue;
 
 }
+
+
 
 #pragma mark -
 
@@ -76,7 +100,7 @@
             
 #ifdef DEBUG
             [classMethods enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@:",obj])], @"未实现注册方法");
+                NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",obj])], @"未实现注册方法");
             }];
 #endif
             

@@ -28,8 +28,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [LRRouter lrrHandleClassMethod:@"getgdr" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
-    [LRRouter lrrHandleClassMethod:@"aaa" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
+    [LRRouter lrrHandleClassMethod:@"get:" path:@"TTT/AAA" params:@[@"11",@"bb"]];
+//    [LRRouter lrrHandleClassMethod:@"aaa" path:@"TTT/AAA" params:@{@"aa":@"bb"}];
 
     // Do any additional setup after loading the view, typically from a nib.
 }
