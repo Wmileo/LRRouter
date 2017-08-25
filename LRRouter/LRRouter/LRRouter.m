@@ -45,11 +45,16 @@
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
     
-    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
+//    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
     
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@",method]);
     NSMethodSignature *signature = [module methodSignatureForSelector:selector];
-    NSAssert(signature, @"方法解析失败");
+//    NSAssert(signature, @"方法解析失败");
+    
+    if (!signature) {
+        return nil;
+    }
+    
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.target = module;
     invocation.selector = selector;
@@ -143,10 +148,10 @@
 +(void)lrrCheckClassMethod:(NSString *)method path:(NSString *)path{
     
 #ifdef DEBUG
-    NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
-    NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
-    NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
-    NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
+//    NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
+//    NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
+//    NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
+//    NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
 #endif
 }
 

@@ -40,6 +40,7 @@ LRRModule(AAA)
 //}
 
 +(void)get:(NSString *)params{
+    
     [LRRouter lrrHandleClassMethod:@"set:aa:" path:@"TTT" params:@[params,@"cc"]];
 }
 
