@@ -40,45 +40,45 @@
 #pragma mark - 
 
 +(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSArray *)params{
-    [self lrrCheckClassMethod:method path:path];
     
+    NSAssert(LRRIsValidString(method) && LRRIsValidString(path), @"无效参数");
+    [self lrrCheckClassMethod:method path:path];
+
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
     
-//    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
+#ifdef LRRDebug
+    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
+#endif
     
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@",method]);
     NSMethodSignature *signature = [module methodSignatureForSelector:selector];
-//    NSAssert(signature, @"方法解析失败");
     
+#ifdef LRRDebug
+    NSAssert(signature, @"方法解析失败");
+#else
     if (!signature) {
         return nil;
     }
+#endif
     
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.target = module;
     invocation.selector = selector;
-    
-    // 设置参数
-    NSInteger paramsCount = signature.numberOfArguments - 2; // 除self、_cmd以外的参数个数
+    NSInteger paramsCount = signature.numberOfArguments - 2;//第一个self，第二个_cmd
     paramsCount = MIN(paramsCount, params.count);
     for (NSInteger i = 0; i < paramsCount; i++) {
         id object = params[i];
         if ([object isKindOfClass:[NSNull class]]) continue;
         [invocation setArgument:&object atIndex:i + 2];
     }
-    
-    // 调用方法
+    [invocation retainArguments];
     [invocation invoke];
-    
-    // 获取返回值
-    id returnValue = nil;
-    if (signature.methodReturnLength) { // 有返回值类型，才去获得返回值
+    void *returnValue = NULL;
+    if (signature.methodReturnLength) {
         [invocation getReturnValue:&returnValue];
     }
-    
-    return returnValue;
-
+    return (__bridge id) returnValue;
 }
 
 
@@ -103,7 +103,7 @@
         if ([module respondsToSelector:@selector(lrrClassMethods)]) {
             NSArray *classMethods = [module lrrClassMethods];
             
-#ifdef DEBUG
+#ifdef LRRDebug
             [classMethods enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",obj])], @"未实现注册方法");
             }];
@@ -146,16 +146,12 @@
 @implementation LRRouter (debug)
 
 +(void)lrrCheckClassMethod:(NSString *)method path:(NSString *)path{
-    
-#ifdef DEBUG
-//    NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
-//    NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
-//    NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
-//    NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
+#ifdef LRRDebug
+    NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
+    NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
+    NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
+    NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
 #endif
 }
 
-
 @end
-
-
