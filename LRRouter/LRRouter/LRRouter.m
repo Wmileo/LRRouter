@@ -32,7 +32,6 @@
     self = [super init];
     if (self) {
         [self registerAnnotationModules];
-        NSLog(@"%@",self.annotationModules);
     }
     return self;
 }
@@ -46,10 +45,6 @@
 
     NSDictionary *moduleDic = [[LRRouter shareInstance] moduleWithPath:path];
     Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
-    
-#ifdef LRRDebug
-    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
-#endif
     
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"%@",method]);
     NSMethodSignature *signature = [module methodSignatureForSelector:selector];
@@ -82,7 +77,6 @@
 }
 
 
-
 #pragma mark -
 
 -(void)registerAnnotationModules{
@@ -97,22 +91,20 @@
 
         NSString *path = [module lrrPath];
         NSMutableDictionary *modules = [self moduleWithPath:path];
-        
+        NSAssert(modules.allKeys.count == 0, @"重复定义");
+
         modules[kLRRModuleClass] = obj;
         modules[kLRRModulePath] = path;
+        
+#ifdef LRRDebug
         if ([module respondsToSelector:@selector(lrrClassMethods)]) {
             NSArray *classMethods = [module lrrClassMethods];
-            
-#ifdef LRRDebug
             [classMethods enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",obj])], @"未实现注册方法");
             }];
-#endif
-            
             modules[kLRRModuleClassMethods] = LRRSafeArray(classMethods);
-        }else{
-            modules[kLRRModuleClassMethods] = @[];
         }
+#endif
         
     }];
 }
@@ -151,6 +143,8 @@
     NSAssert(LRRIsValidString(moduleDic[kLRRModuleClass]), @"未定义该path");
     NSArray *classMethods = moduleDic[kLRRModuleClassMethods];
     NSAssert([classMethods containsObject:method], @"lrrClassMethods不支持实现该类方法");
+    Class module = NSClassFromString(moduleDic[kLRRModuleClass]);
+    NSAssert([module respondsToSelector:NSSelectorFromString([NSString stringWithFormat:@"%@",method])], @"未实现该方法");
 #endif
 }
 

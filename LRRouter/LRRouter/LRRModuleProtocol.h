@@ -22,10 +22,4 @@
  */
 +(NSArray<NSString *> *)lrrClassMethods;
 
-
-
-//#pragma mark - instance
-//+(NSArray<NSString *> *)lrrInstanceMethods;
-//+(instancetype)lrrModuleInstance;
-
 @end

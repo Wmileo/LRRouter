@@ -21,9 +21,8 @@
 // 字典key
 
 #define kLRRModulePath @"kLRRModulePath"
-#define kLRRModuleClassMethods @"kLRRModuleClassMethods"
 #define kLRRModuleClass @"kLRRModuleClass"
-
+#define kLRRModuleClassMethods @"kLRRModuleClassMethods"
 
 
 #endif /* LRRModuleMacro_h */
