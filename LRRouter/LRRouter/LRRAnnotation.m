@@ -36,7 +36,6 @@ static NSArray<NSString *>* LRRReadConfig(char *section)
         NSString *str = [NSString stringWithUTF8String:string];
         if(!str)continue;
         
-//        NSLog(@"config = %@", str);
         if(str) [configs addObject:str];
     }
     

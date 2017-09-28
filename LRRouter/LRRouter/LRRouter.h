@@ -13,6 +13,9 @@
 
 @interface LRRouter : NSObject
 
+/*
+ 调用注册方法，method为方法名，path为对应模块，params为参数
+ */
 +(id)lrrHandleClassMethod:(NSString *)method path:(NSString *)path params:(NSArray *)params;
 
 @end
