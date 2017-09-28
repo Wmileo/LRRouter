@@ -91,7 +91,7 @@
 
         NSString *path = [module lrrPath];
         NSMutableDictionary *modules = [self moduleWithPath:path];
-        NSAssert(modules.allKeys.count == 0, @"重复定义");
+        NSAssert(!modules[kLRRModuleClass], @"重复定义");
 
         modules[kLRRModuleClass] = obj;
         modules[kLRRModulePath] = path;
