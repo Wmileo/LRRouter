@@ -44,8 +44,23 @@ static NSArray<NSString *>* LRRReadConfig(char *section)
 
 @implementation LRRAnnotation
 
+NSString *modules;
+
 +(NSArray<NSString *> *)annotationModules{
-    return LRRReadConfig(LRRModuleSectName);
+    NSArray *arr = LRRReadConfig(LRRModuleSectName);
+    if (arr.count > 0) {
+        return arr;
+    }else{
+        return [modules componentsSeparatedByString:@","];
+    }
+}
+
++(void)addModule:(Class)module{
+    if (modules) {
+        modules = [modules stringByAppendingFormat:@",%@",NSStringFromClass(module)];
+    }else{
+        modules = NSStringFromClass(module);
+    }
 }
 
 @end
