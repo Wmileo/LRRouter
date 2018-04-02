@@ -16,16 +16,22 @@
 #define LRRDATA(sectname) __attribute((used, section("__DATA,"#sectname" ")))
 
 //声明组件模块
+#warning 不支持动态库
 #define LRRModule(name) \
 char * k##name##_module LRRDATA(LRRModules) = ""#name""; \
 @interface name () <LRRModuleProtocol> \
-@end
-
+@end\
+@interface name (Annotation)\
+@end\
+@implementation name (Annotation)\
++(void)load{\
+    [LRRAnnotation addModule:[name class]];\
+}\
+@end\
 
 @interface LRRAnnotation : NSObject
 
-
 +(NSArray<NSString *> *)annotationModules;
-
++(void)addModule:(Class)module;
 
 @end
